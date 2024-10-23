@@ -18,12 +18,12 @@ class OverdueTodos extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Sends mail for overdue tasks';
 
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle() 
     {
         $this->line('Overdue Todos');
     }

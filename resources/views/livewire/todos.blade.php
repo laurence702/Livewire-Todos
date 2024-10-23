@@ -9,15 +9,16 @@ with([
 ]);
 
 $add = function () {
-    $todo = auth()->user()->todos()->make([
-        'task' => $this->task
+    $validatedData = $this->validate([
+        'task' => 'required|max:255',
     ]);
+
+    $todo = auth()->user()->todos()->make($validatedData);
     $todo->save();
 
     Mail::to(auth()->user())
         ->queue(new TodoCreated($todo));
 };
-
 
 $delete = fn (\App\Models\Todo $todo) => $todo->delete();
 
